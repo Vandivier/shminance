@@ -1,0 +1,22 @@
+{
+  "name": "shminance",
+  "version": "1.0.0",
+  "description": "a finance app using Spectre API, Angular, and who knows what ruckus",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vandivier/shminance.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vandivier/shminance/issues"
+  },
+  "homepage": "https://github.com/Vandivier/shminance#readme",
+  "devDependencies": {
+    "@angular/cli": "^6.0.1"
+  }
+}
