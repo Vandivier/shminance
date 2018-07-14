@@ -1,13 +1,29 @@
-import {ApplicationConfig} from '@loopback/core';
-import {RestApplication, RestServer, RestBindings} from '@loopback/rest';
+// Copyright IBM Corp. 2017,2018. All Rights Reserved.
+// Node module: @loopback/example-todo
+// This file is licensed under the MIT License.
+// License text available at https://opensource.org/licenses/MIT
+
+import {ApplicationConfig, Provider, Constructor} from '@loopback/core';
+import {RestApplication} from '@loopback/rest';
 import {MySequence} from './sequence';
+import {GeocoderServiceProvider} from './services';
 
 /* tslint:disable:no-unused-variable */
 // Binding and Booter imports are required to infer types for BootMixin!
 import {BootMixin, Booter, Binding} from '@loopback/boot';
+
+// juggler imports are required to infer types for RepositoryMixin!
+import {
+  Class,
+  Repository,
+  RepositoryMixin,
+  juggler,
+} from '@loopback/repository';
 /* tslint:enable:no-unused-variable */
 
-export class ShminanceApiApplication extends BootMixin(RestApplication) {
+export class TodoListApplication extends BootMixin(
+  RepositoryMixin(RestApplication),
+) {
   constructor(options?: ApplicationConfig) {
     super(options);
 
@@ -24,14 +40,21 @@ export class ShminanceApiApplication extends BootMixin(RestApplication) {
         nested: true,
       },
     };
+
+    // TODO(bajtos) Services should be created and registered by @loopback/boot
+    // See https://github.com/strongloop/loopback-next/issues/1439
+    this.setupServices();
   }
 
-  async start() {
-    await super.start();
+  setupServices() {
+    this.service(GeocoderServiceProvider);
+  }
 
-    const server = await this.getServer(RestServer);
-    const port = await server.get(RestBindings.PORT);
-    console.log(`Server is running at http://127.0.0.1:${port}`);
-    console.log(`Try http://127.0.0.1:${port}/ping`);
+  // TODO(bajtos) app.service should be provided either by core Application
+  // class or a mixin provided by @loopback/service-proxy
+  // See https://github.com/strongloop/loopback-next/issues/1439
+  service<T>(provider: Constructor<Provider<T>>) {
+    const key = `services.${provider.name.replace(/Provider$/, '')}`;
+    this.bind(key).toProvider(provider);
   }
 }
