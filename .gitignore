@@ -1,6 +1,9 @@
 # Dist
 dist8/
 
+# Properties
+properties.js
+
 # Logs
 logs
 *.log
