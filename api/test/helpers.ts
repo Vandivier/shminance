@@ -7,7 +7,6 @@ import {HttpCachingProxy} from '@loopback/http-caching-proxy';
 import {merge} from 'lodash';
 import * as path from 'path';
 import {Todo} from '../src/models/index';
-import {GeoPoint} from '../src/services/geocoder.service';
 
 /*
  ==============================================================================
@@ -43,26 +42,6 @@ export function givenTodo(todo?: Partial<Todo>) {
     todo,
   );
   return new Todo(data);
-}
-
-export const aLocation = {
-  address: '1 New Orchard Road, Armonk, 10504',
-  geopoint: <GeoPoint>{y: 41.109653, x: -73.72467},
-  get geostring() {
-    // tslint:disable-next-line:no-invalid-this
-    return `${this.geopoint.y},${this.geopoint.x}`;
-  },
-};
-
-const GEO_CODER_CONFIG = require('../src/datasources/geocoder.datasource.json');
-
-export function getProxiedGeoCoderConfig(proxy: HttpCachingProxy) {
-  return merge({}, GEO_CODER_CONFIG, {
-    options: {
-      proxy: proxy.url,
-      tunnel: false,
-    },
-  });
 }
 
 export {HttpCachingProxy};

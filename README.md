@@ -25,3 +25,9 @@ Misc links:
 3. [PWA starter kit (Google I/O '18)](https://www.youtube.com/watch?v=we3lLo-UFtk)
 4. [Build the future of the web with modern JavaScript (Google I/O '18)](https://www.youtube.com/watch?v=mIWCLOftfRw)
 5. [Web performance made easy (Google I/O '18)](https://www.youtube.com/watch?v=Mv-l3-tJgGk)
+6. https://github.com/strongloop/loopback-next/issues/559
+7. OpenAPI definition
+    1. YAML: http://localhost:3000/openapi.yaml
+    2. JSON: http://localhost:3000/openapi.json
+    3. ref: https://strongloop.com/strongblog/upgrade-from-swagger-to-openapi-3/
+8. vs code search all, files to exclude: `*node_modules*, .git*, *dist8*`

@@ -6,7 +6,6 @@
 import {ApplicationConfig, Provider, Constructor} from '@loopback/core';
 import {RestApplication} from '@loopback/rest';
 import {MySequence} from './sequence';
-import {GeocoderServiceProvider} from './services';
 
 /* tslint:disable:no-unused-variable */
 // Binding and Booter imports are required to infer types for BootMixin!
@@ -47,7 +46,7 @@ export class TodoListApplication extends BootMixin(
   }
 
   setupServices() {
-    this.service(GeocoderServiceProvider);
+    //this.service(GeocoderServiceProvider);
   }
 
   // TODO(bajtos) app.service should be provided either by core Application
